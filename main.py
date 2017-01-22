@@ -1,8 +1,8 @@
-from dt import roadMap
+from dt import RoadMap
+from viz import Viz
 def main():
-    mapA = roadMap()
-    if mapA.Matrix[0][0].hasCar():
-        print("True")
-    else:
-        print("False")
+    mapA = RoadMap()
+    viz = Viz(mapA)
+    viz.show()
+
 main()

@@ -1,4 +1,5 @@
 from car import Car
+from dt import RoadMap
 class Generator():
     def __init__(self, mapA):
         self.c = [0, 0, 0]

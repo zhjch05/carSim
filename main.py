@@ -1,5 +1,5 @@
-from dt import RoadMap
-from viz import Viz
+from model.dt import RoadMap
+from controller.viz import Viz
 def main():
     mapA = RoadMap()
     viz = Viz(mapA)

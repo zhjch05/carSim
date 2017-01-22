@@ -1,7 +1,7 @@
 import matplotlib as mpl
 from matplotlib import pyplot
 import numpy as np
-from dt import RoadMap
+from model.dt import RoadMap
 import time
 
 class Viz():
@@ -39,6 +39,3 @@ class Viz():
 
         pyplot.grid(True,color='white',linewidth = 1.5 )
         pyplot.show()
-
-
-        #print self.get2dArray()

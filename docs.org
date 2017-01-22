@@ -1,0 +1,21 @@
+* Matrix[][]
+width = 50
+height = 9
+
+** type(x, y)
+*** isDisabled() = hasCar at speed 0
+*** hasCar()/!hasCar()
+
+
+* Tick()
+** Single car's behavior
+*** changeSpeed: Vf = Vi + A(default) canGoFront: front.isDisabled() or front.hasCar(), brake until speed is equal to front car
+*** changeLane():
+**** getCarsAtFront() getsCarsAtTargetFront() isCarBeside() 
+**** shift lane and go v steps more
+
+** Collision? Order?
+no time cost for lane change
+
+
+

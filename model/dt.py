@@ -8,6 +8,6 @@ class RoadMap:
         for i in range(self.r):
             for j in range(self.c):
                 if i < 6 and j == 49:
-                    self.Matrix[i][j] = Tile(1)
+                    self.Matrix[i][j] = Tile(1, None)
                 else:
-                    self.Matrix[i][j] = Tile(0)
+                    self.Matrix[i][j] = Tile(0, None)

@@ -3,10 +3,12 @@ from matplotlib import pyplot
 import numpy as np
 from model.dt import RoadMap
 import time
+from tick import Tick
 
 class Viz():
     def __init__(self, mapA):
         self.mapA = mapA
+        self.t = Tick(mapA)
 
     def get2dArray(self):
         r = self.mapA.r
@@ -14,21 +16,18 @@ class Viz():
         rawMatrix = [[0 for x in range(c)] for y in range(r)]
         for i in range(self.mapA.r):
             for j in range(self.mapA.c):
-                #print self.mapA.Matrix[i][j].isDisabled
                 if self.mapA.Matrix[i][j].isDisabled == 1:
-                    #print("hi")
                     rawMatrix[i][j] = -5
                 elif self.mapA.Matrix[i][j].hasCar():
-                    #print("car")
                     rawMatrix[i][j] = 5
                 else:
-                    #print("good")
                     rawMatrix[i][j] = 0
         return rawMatrix
 
     def show(self):
+        self.t.tick()
         rawMatrix = self.get2dArray()
-        # make a color map of fixed colofrs
+        # make a color map of fixed colors
         cmap = mpl.colors.ListedColormap(['red','grey','black'])
         bounds=[-6,-2,2,6]
         norm = mpl.colors.BoundaryNorm(bounds, cmap.N)

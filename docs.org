@@ -9,7 +9,8 @@ height = 9
 
 * Tick()
 ** Single car's behavior
-*** changeSpeed: Vf = Vi + A(default) canGoFront: front.isDisabled() or front.hasCar(), brake until speed is equal to front car
+*** changeSpeed: Vf = Vi + A(default) canGoFront: front.isDisabled() 
+or front.hasCar(), brake until speed is equal to front car
 *** changeLane():
 **** getCarsAtFront() getsCarsAtTargetFront() isCarBeside() 
 **** shift lane and go v steps more
@@ -19,3 +20,4 @@ no time cost for lane change
 
 
 
+8,6,3

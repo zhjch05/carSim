@@ -2,6 +2,7 @@ import matplotlib as mpl
 from matplotlib import pyplot
 import numpy as np
 from dt import RoadMap
+import time
 
 class Viz():
     def __init__(self, mapA):
@@ -26,14 +27,18 @@ class Viz():
         return rawMatrix
 
     def show(self):
+        rawMatrix = self.get2dArray()
         # make a color map of fixed colofrs
         cmap = mpl.colors.ListedColormap(['red','grey','black'])
         bounds=[-6,-2,2,6]
         norm = mpl.colors.BoundaryNorm(bounds, cmap.N)
         # tell imshow about color map so that only set colors are used
-        img = pyplot.imshow(self.get2dArray(),interpolation='nearest',
-                            cmap = cmap,norm=norm)
+        img = pyplot.imshow(rawMatrix,interpolation='nearest', cmap = cmap,norm=norm)
+        pyplot.xticks(np.arange(0, 50, 1.0))
+        pyplot.yticks(np.arange(0, 9, 1.0))
 
+        pyplot.grid(True,color='white',linewidth = 1.5 )
         pyplot.show()
-        #
+
+
         #print self.get2dArray()

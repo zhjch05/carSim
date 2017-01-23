@@ -29,9 +29,8 @@ class Viz():
     def updatefig(self, *args):
         self.t.tick()
         self.rawMatrix = self.get2dArray()
-        self.img.set_data(self.rawMatrix)
-        return self.img
-
+        self.mat.set_data(self.rawMatrix)
+        return self.mat
 
 
     def show(self):
@@ -40,13 +39,15 @@ class Viz():
         cmap = mpl.colors.ListedColormap(['red','grey','black'])
         bounds=[-6,-2,2,6]
         norm = mpl.colors.BoundaryNorm(bounds, cmap.N)
+        fig, ax = plt.subplots()
         # tell imshow about color map so that only set colors are used
-        self.img = plt.imshow(self.rawMatrix,interpolation='nearest', cmap = cmap,norm=norm, animated=True)
+        self.mat = ax.matshow(self.rawMatrix,interpolation='nearest', cmap = cmap,norm=norm, animated=True)
+
         plt.xticks(np.arange(0, 50, 1.0))
         plt.yticks(np.arange(0, 9, 1.0))
 
         plt.grid(True,color='white',linewidth = 1.5 )
-        fig = plt.figure()
+        #fig = plt.subplots()
 
-        anim = animation.FuncAnimation(fig, self.updatefig, interval=50)
+        anim = animation.FuncAnimation(fig, self.updatefig, interval=500)
         plt.show()

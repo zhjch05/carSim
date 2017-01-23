@@ -59,19 +59,31 @@ class Car:
         return frontCar.y - self.y - 1
 
     def stepForward(self):
-        if self.v + self.y > self.mapA.c - 1:
-            if self.x < 6:
-                return Car(self.mapA, 0, self.a, self.p, self.x, self.mapA.c - 2)
-            else:
-                return Car(None, 0, 0, 0, self.x, self.y) #poison pill to let tick remove this car from roadmap
+        tempY = self.y
+        for i in range(0, self.v):
+            frontTile = self.getFrontTile()
+            if frontTile is None:
                 print("Car successfully exits!")
-        elif self.v + self.y == self.mapA.c - 1:
-            if self.x < 6:
-                return Car(self.mapA, 0, self.a, self.p, self.x, self.mapA.c - 2)
+                return Car(None, 0, 0, 0, self.x, tempY) #poison pill to let tick remove this car from roadmap
+            elif frontTile.isDisabled == 1:
+                return Car(self.mapA, 0, self.a, self.p, self.x, self.y)
             else:
-                return Car(self.mapA, self.v, self.a, self.p, self.x, self.y + self.v)
-        else:
-            return Car(self.mapA, self.v, self.a, self.p, self.x, self.y + self.v)
+                self.y+=1
+        return Car(self.mapA, self.v, self.a, self.p, self.x, self.y)
+        #
+        # if self.v + self.y > self.mapA.c - 1:
+        #     if self.x < 6:
+        #         return Car(self.mapA, 0, self.a, self.p, self.x, self.mapA.c - 2)
+        #     else:
+        #         return Car(None, 0, 0, 0, self.x, self.y) #poison pill to let tick remove this car from roadmap
+        #         print("Car successfully exits!")
+        # elif self.v + self.y == self.mapA.c - 1:
+        #     if self.x < 6:
+        #         return Car(self.mapA, 0, self.a, self.p, self.x, self.mapA.c - 2)
+        #     else:
+        #         return Car(self.mapA, self.v, self.a, self.p, self.x, self.y + self.v)
+        # else:
+        #     return Car(self.mapA, self.v, self.a, self.p, self.x, self.y + self.v)
 
 
     # def changeLane(self):

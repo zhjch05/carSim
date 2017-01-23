@@ -30,6 +30,7 @@ class Tick():
                     newCar = self.mapA.Matrix[i][j].car.move()
                     if newCar is not None:
                         if newCar.mapA is None:#poison pill
+                            print(newCar.x, newCar.y)
                             self.mapA.Matrix[newCar.x][newCar.y].car = None
                         else:
                             self.mapA.Matrix[i][j].car = None

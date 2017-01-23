@@ -47,5 +47,5 @@ class Viz():
         plt.yticks(np.arange(0, 9, 1.0))
 
         plt.grid(True,color='white',linewidth = 1.5 )
-        anim = animation.FuncAnimation(fig, self.updatefig, interval=1000)
+        anim = animation.FuncAnimation(fig, self.updatefig, interval=500)
         plt.show()

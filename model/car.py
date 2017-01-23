@@ -41,10 +41,15 @@ class Car:
         if self.v + self.y > self.mapA.c - 1:
             if self.x < 6:
                 #self.mapA.Matrix[self.x][self.mapA.c - 2].car = self
-                return Car(self.mapA, self.v, self.a, self.p, self.x, self.mapA.c - 2)
+                return Car(self.mapA, 0, self.a, self.p, self.x, self.mapA.c - 2)
             else:
                 return Car(None, 0, 0, 0, self.x, self.y) #poison pill to let tick remove this car from roadmap
                 print("Car successfully exits!")
+        elif self.v + self.y == self.mapA.c - 1:
+            if self.x < 6:
+                return Car(self.mapA, 0, self.a, self.p, self.x, self.mapA.c - 2)
+            else:
+                return Car(self.mapA, self.v, self.a, self.p, self.x, self.y + self.v)
         else:
             #self.mapA.Matrix[self.x][self.y+self.v].car = Car(self.mapA, self.v, self.a, self.p, self.x, self.y + self.v)
             return Car(self.mapA, self.v, self.a, self.p, self.x, self.y + self.v)

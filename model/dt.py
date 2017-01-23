@@ -3,7 +3,7 @@ class RoadMap:
 
     def __init__(self):
         self.r = 9
-        self.c = 40
+        self.c = 30
         self.Matrix = [[0 for x in range(self.c)] for y in range(self.r)]
         for i in range(self.r):
             for j in range(self.c):

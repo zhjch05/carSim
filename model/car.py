@@ -107,18 +107,25 @@ class Car:
         rightRearCar = self.getRightRearCar()
         rightCar = self.getRightCar()
         if rightRearCar is not None:
-            if self.v >= rightRearCar.v:
+            if self.v > rightRearCar.v:
                 if rightFrontCar is not None:
                     if self.v <= rightFrontCar.v:
                         if rightCar is None:
-                            return Car(self.mapA, self.v, self.a, self.p, self.x + 1, self.y)
+                            if self.x < 8:
+                                return Car(self.mapA, self.v, self.a, self.p, self.x + 1, self.y)
                 else:
                     if rightCar is None:
-                        return Car(self.mapA, self.v, self.a, self.p, self.x + 1, self.y)
+                        if self.x < 8:
+                            return Car(self.mapA, self.v, self.a, self.p, self.x + 1, self.y)
         else:
             if rightFrontCar is not None:
                 if self.v <= rightFrontCar.v:
                     if rightCar is None:
+                        if self.x < 8:
+                            return Car(self.mapA, self.v, self.a, self.p, self.x + 1, self.y)
+            else:
+                if rightCar is None:
+                    if self.x < 8:
                         return Car(self.mapA, self.v, self.a, self.p, self.x + 1, self.y)
 
     def move(self):

@@ -43,9 +43,9 @@ class Viz():
         # tell imshow about color map so that only set colors are used
         self.mat = ax.matshow(self.rawMatrix,interpolation='nearest', cmap = cmap,norm=norm, animated=True)
 
-        plt.xticks(np.arange(0, 50, 1.0))
+        plt.xticks(np.arange(0, self.mapA.c, 1.0))
         plt.yticks(np.arange(0, 9, 1.0))
 
         plt.grid(True,color='white',linewidth = 1.5 )
-        anim = animation.FuncAnimation(fig, self.updatefig, interval=500)
+        anim = animation.FuncAnimation(fig, self.updatefig, interval=1000)
         plt.show()

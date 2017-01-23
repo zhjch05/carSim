@@ -21,19 +21,19 @@ class Generator():
                     print("cannot accommodate more cars!")
                     #sys.exit("cannot accommodate more cars!")
                 else:
-                    self.mapA.Matrix[i][0] = Tile(0, Car(0, 1))
+                    self.mapA.Matrix[i][0] = Tile(0, Car(self.mapA, 0, 1, 1, i, 0))
         if self.c[1] == 1:
             for i in range(3,6):
                 if self.mapA.Matrix[i][0].hasCar():
                     print("cannot accommodate more cars!")
                     #sys.exit("cannot accommodate more cars!")
                 else:
-                    self.mapA.Matrix[i][0] = Tile(0, Car(0, 1))
+                    self.mapA.Matrix[i][0] = Tile(0, Car(self.mapA, 0, 1, 1, i, 0))
         if self.c[2] == 1:
             for i in range(6,9):
                 if self.mapA.Matrix[i][0].hasCar():
                     print("cannot accommodate more cars!")
                     #sys.exit("cannot accommodate more cars!")
                 else:
-                    self.mapA.Matrix[i][0] = Tile(0, Car(1, 1))
+                    self.mapA.Matrix[i][0] = Tile(0, Car(self.mapA, 1, 1, 1, i, 0))
         return self.mapA.Matrix

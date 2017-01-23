@@ -34,13 +34,33 @@ class Car:
                 return self.mapA.Matrix[self.x][i].car
         return None
 
+    def getRightCar(self):
+        if self.getRightTile() is not None:
+            return self.getRightTile().car
+        return None
+
+    def getRightFrontCar(self):
+        if self.x + 1 > self.mapA.r - 1:
+            return None
+        for i in range(self.y + 1, self.mapA.c):
+            if self.mapA.Matrix[self.x+1][i].hasCar():
+                return self.mapA.Matrix[self.x+1][i].car
+        return None
+
+    def getRightRearCar(self):
+        if self.x + 1 > self.mapA.r - 1:
+            return None
+        for i in range(self.y - 1, -1):
+            if self.mapA.Matrix[self.x+1][i].hasCar():
+                return self.mapA.Matrix[self.x+1][i].car
+        return None
+
     def horizDistance(self, frontCar):
         return frontCar.y - self.y - 1
 
     def stepForward(self):
         if self.v + self.y > self.mapA.c - 1:
             if self.x < 6:
-                #self.mapA.Matrix[self.x][self.mapA.c - 2].car = self
                 return Car(self.mapA, 0, self.a, self.p, self.x, self.mapA.c - 2)
             else:
                 return Car(None, 0, 0, 0, self.x, self.y) #poison pill to let tick remove this car from roadmap
@@ -51,10 +71,17 @@ class Car:
             else:
                 return Car(self.mapA, self.v, self.a, self.p, self.x, self.y + self.v)
         else:
-            #self.mapA.Matrix[self.x][self.y+self.v].car = Car(self.mapA, self.v, self.a, self.p, self.x, self.y + self.v)
             return Car(self.mapA, self.v, self.a, self.p, self.x, self.y + self.v)
-        #self.getTile.car = None
 
+
+    # def changeLane(self):
+    #     frontTile = self.getFrontTile()
+    #     if frontTile is not None:
+    #         if frontTile.isDisabled == 1:
+    #             rightTile = self.getRightTile()
+    #             if rightTile is not None:
+    #                 if not rightTile.hasCar():
+    #                     return Car(self.mapA, self.v, self.a, self.p, self.x + 1, self.y)
 
     def changeLane(self):
         frontTile = self.getFrontTile()
@@ -64,12 +91,23 @@ class Car:
                 if rightTile is not None:
                     if not rightTile.hasCar():
                         return Car(self.mapA, self.v, self.a, self.p, self.x + 1, self.y)
-                        #rightTile.car = Car(self.mapA, self.v, self.a, self.p, self.x + 1, self.y)
-                        #self.getTile().car = None
-
-
-    # def changeSpeed(self):
-    #     return v + a
+        rightFrontCar = self.getRightFrontCar()
+        rightRearCar = self.getRightRearCar()
+        rightCar = self.getRightCar()
+        if rightRearCar is not None:
+            if self.v >= rightRearCar.v:
+                if rightFrontCar is not None:
+                    if self.v <= rightFrontCar.v:
+                        if rightCar is None:
+                            return Car(self.mapA, self.v, self.a, self.p, self.x + 1, self.y)
+                else:
+                    if rightCar is None:
+                        return Car(self.mapA, self.v, self.a, self.p, self.x + 1, self.y)
+        else:
+            if rightFrontCar is not None:
+                if self.v <= rightFrontCar.v:
+                    if rightCar is None:
+                        return Car(self.mapA, self.v, self.a, self.p, self.x + 1, self.y)
 
     def move(self):
         frontCar = self.getFrontCar()

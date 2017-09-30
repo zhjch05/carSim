@@ -14,3 +14,6 @@ carSim is a simulator for toll lanes traffic.
 `model/tile.py` is the `Tile` class represented in the 2d grid, `Tile`(grey) can be disabled(red), or holds a car(black)
 
 `model/car.py` is the core to operate the cars, `Car.p` is the probability to changeLane()
+
+## Example image
+![Screenshot](./Figure_1.png "Demo screenshot")

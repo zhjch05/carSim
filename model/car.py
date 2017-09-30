@@ -1,5 +1,5 @@
-from dt import RoadMap
-from tile import Tile
+from model.dt import RoadMap
+from model.tile import Tile
 from copy import copy, deepcopy
 class Car:
     def __init__(self, mapA, v, a, p, x, y):

@@ -5,7 +5,7 @@ import matplotlib.animation as animation
 import numpy as np
 from model.dt import RoadMap
 import time
-from tick import Tick
+from controller.tick import Tick
 
 class Viz():
     def __init__(self, mapA):

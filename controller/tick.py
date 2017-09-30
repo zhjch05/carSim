@@ -1,5 +1,5 @@
 import random
-from generator import Generator
+from controller.generator import Generator
 import sys
 sys.path.append("..")
 from model.car import Car

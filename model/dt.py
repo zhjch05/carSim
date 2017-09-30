@@ -1,4 +1,4 @@
-from tile import Tile
+from model.tile import Tile
 class RoadMap:
 
     def __init__(self):
